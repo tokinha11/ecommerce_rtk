@@ -36,6 +36,9 @@ const CartSlice = createSlice({
             const itemToDecrease = state.cartItems.find(item => item.id === action.payload);
             if (itemToDecrease) {
                 itemToDecrease.quantity -= 1;
+                if (itemToDecrease.quantity <= 0) {
+                    state.cartItems = state.cartItems.filter(item => item.id !== action.payload)
+                };
             }
         },
     }
